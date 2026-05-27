@@ -2,6 +2,62 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+
+<!-- Utmify Pixel -->
+<script>
+  window.pixelId = "6a177231823e248be4466548";
+  var a = document.createElement("script");
+  a.setAttribute("async", "");
+  a.setAttribute("defer", "");
+  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+  document.head.appendChild(a);
+</script>
+
+<!-- Utmify UTMs -->
+<script
+  src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+  data-utmify-prevent-xcod-sck
+  data-utmify-prevent-subids
+  async
+  defer
+></script>
+
+<!-- Utmify: PageView + ViewContent -->
+<script>
+  // PageView: dispara assim que a página carrega
+  window.addEventListener("load", function () {
+    if (window.utmify && typeof window.utmify.track === "function") {
+      window.utmify.track("PageView");
+    } else {
+      // aguarda o pixel estar pronto caso ainda não tenha carregado
+      var interval = setInterval(function () {
+        if (window.utmify && typeof window.utmify.track === "function") {
+          window.utmify.track("PageView");
+          clearInterval(interval);
+        }
+      }, 200);
+    }
+  });
+
+  // ViewContent: dispara quando o usuário começa a rolar a página
+  (function () {
+    var viewContentFired = false;
+    function fireViewContent() {
+      if (viewContentFired) return;
+      viewContentFired = true;
+      window.removeEventListener("scroll", fireViewContent);
+      var tryFire = function () {
+        if (window.utmify && typeof window.utmify.track === "function") {
+          window.utmify.track("ViewContent");
+        } else {
+          setTimeout(tryFire, 300);
+        }
+      };
+      tryFire();
+    }
+    window.addEventListener("scroll", fireViewContent, { passive: true });
+  })();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="+6.000 músicas pra estrada em 7 estilos. Pendrive do Caminhoneiro - modão, sertanejo, piseiro, flashback, rock e mais. Sem internet, sem propaganda, sem mensalidade.">
 <title>Pendrive do Caminhoneiro | +6.000 Músicas pra Rodar a Estrada Toda</title>
@@ -221,7 +277,7 @@
     <span class="hero-tag">🎧 +6.000 MÚSICAS PRA ESTRADA</span>
     <h1>A estrada é longa.<br><span>Que tal 6.000 músicas pra fazer companhia?</span></h1>
     <p class="hero-sub">Modão raiz, sertanejo, piseiro, forró, flashback dos anos 80/90, rock e pagode. Tudo organizado por pastas no seu pendrive. Pronto pra rodar sem internet, sem propaganda e sem mensalidade.</p>
-    <a href="#oferta" class="btn-cta">QUERO MEU PENDRIVE AGORA</a>
+    <a href="#oferta" class="btn-cta">QUERO AGORA MINHAS 6.000 MÚSICAS</a>
     <div class="hero-trust">
       <span>Garantia de 30 dias</span>
       <span>Acesso imediato no Zap e e-mail</span>
@@ -272,12 +328,7 @@
         <div class="qtd" style="color: #ffd54a; font-size: 16px; text-shadow: 1px 1px 3px rgba(0,0,0,0.9);">500 músicas</div>
       </div>
 
-      <div class="estilo-card destaque-card">
-        <div class="estilo-icon especial">🚛</div>
-        <h3>Hinos do Caminhoneiro</h3>
-        <div class="qtd">200 músicas</div>
-        <span class="badge-exclusivo">EXCLUSIVO</span>
-      </div>
+
 
     </div>
 
@@ -329,8 +380,8 @@
 
 <section class="previa">
   <div class="container">
-    <h2 class="section-title">Escute uma <span>amostra de cada estilo</span></h2>
-    <p class="section-sub">Toque uma prévia de cada pasta e veja a variedade que vai pro seu pendrive</p>
+    <h2 class="section-title">Veja os principais <span>cantores de cada estilo</span></h2>
+    <p class="section-sub">Passe para o lado e confira os maiores sucessos que vão no seu pendrive</p>
 
     <div class="carrossel-wrap">
       <button class="carrossel-btn prev" id="carrossel-prev" aria-label="Anterior">‹</button>
@@ -339,63 +390,90 @@
       <div class="carrossel" id="carrossel">
         <div class="previa-card">
           <span class="previa-tag">▶ MODÃO & RAIZ</span>
-          <img src="https://via.placeholder.com/200x200/1c1c1c/f5b800?text=Tiao+Carreiro" alt="Modão">
-          <h4>Pagode em Brasília</h4>
-          <div class="estilo">Tião Carreiro & Pardinho</div>
-          <audio controls preload="none">
-            <source src="previa-modao.mp3" type="audio/mpeg">
-          </audio>
+          <h4 style="font-size: 18px; margin-bottom: 10px; color: var(--amarelo);">Principais Cantores:</h4>
+          <ul style="list-style: none; padding: 0; margin: 0; text-align: center; color: var(--texto); font-size: 15px; line-height: 1.6;">
+            <li>Zezé Di Camargo & Luciano</li>
+            <li>Leandro & Leonardo</li>
+            <li>Chitãozinho & Xororó</li>
+            <li>Tião Carreiro & Pardinho</li>
+            <li>Milionário & José Rico</li>
+            <li>Trio Parada Dura</li>
+            <li>João Mineiro & Marciano</li>
+            <li>Chrystian & Ralf</li>
+            <li>Matogrosso & Mathias</li>
+            <li>Sérgio Reis</li>
+          </ul>
         </div>
 
         <div class="previa-card">
           <span class="previa-tag">▶ PISEIRO</span>
-          <img src="https://via.placeholder.com/200x200/1c1c1c/f5b800?text=Joao+Gomes" alt="Piseiro">
-          <h4>Meu Pedaço de Pecado</h4>
-          <div class="estilo">João Gomes</div>
-          <audio controls preload="none">
-            <source src="previa-piseiro.mp3" type="audio/mpeg">
-          </audio>
+          <h4 style="font-size: 18px; margin-bottom: 10px; color: var(--amarelo);">Principais Cantores:</h4>
+          <ul style="list-style: none; padding: 0; margin: 0; text-align: center; color: var(--texto); font-size: 15px; line-height: 1.6;">
+            <li>João Gomes</li>
+            <li>Tarcísio do Acordeon</li>
+            <li>Vitor Fernandes</li>
+            <li>Iguinho & Lulinha</li>
+            <li>Nadson O Ferinha</li>
+            <li>Zé Vaqueiro</li>
+            <li>Thiago Jhonathan (TJ)</li>
+            <li>Rey Vaqueiro</li>
+            <li>Nattan</li>
+            <li>Os Barões da Pisadinha</li>
+          </ul>
         </div>
 
         <div class="previa-card">
           <span class="previa-tag">▶ FLASHBACK</span>
-          <img src="https://via.placeholder.com/200x200/1c1c1c/f5b800?text=Roberto+Carlos" alt="Flashback">
-          <h4>Caminhoneiro</h4>
-          <div class="estilo">Roberto Carlos</div>
-          <audio controls preload="none">
-            <source src="previa-flashback.mp3" type="audio/mpeg">
-          </audio>
+          <h4 style="font-size: 18px; margin-bottom: 10px; color: var(--amarelo);">Principais Cantores:</h4>
+          <ul style="list-style: none; padding: 0; margin: 0; text-align: center; color: var(--texto); font-size: 15px; line-height: 1.6;">
+            <li>Scorpions</li>
+            <li>Dire Straits</li>
+            <li>Creedence Clearwater Revival</li>
+            <li>Queen</li>
+            <li>A-ha</li>
+            <li>Alphaville</li>
+            <li>Roxette</li>
+            <li>Bee Gees</li>
+            <li>Guns N' Roses</li>
+            <li>Bon Jovi</li>
+          </ul>
         </div>
 
         <div class="previa-card">
           <span class="previa-tag">▶ ROCK CLÁSSICO</span>
-          <img src="https://via.placeholder.com/200x200/1c1c1c/f5b800?text=Legiao+Urbana" alt="Rock">
-          <h4>Tempo Perdido</h4>
-          <div class="estilo">Legião Urbana</div>
-          <audio controls preload="none">
-            <source src="previa-rock.mp3" type="audio/mpeg">
-          </audio>
+          <h4 style="font-size: 18px; margin-bottom: 10px; color: var(--amarelo);">Principais Cantores:</h4>
+          <ul style="list-style: none; padding: 0; margin: 0; text-align: center; color: var(--texto); font-size: 15px; line-height: 1.6;">
+            <li>AC/DC</li>
+            <li>Metallica</li>
+            <li>Pink Floyd</li>
+            <li>Iron Maiden</li>
+            <li>Led Zeppelin</li>
+            <li>Black Sabbath</li>
+            <li>Aerosmith</li>
+            <li>Deep Purple</li>
+            <li>The Rolling Stones</li>
+            <li>Kiss</li>
+          </ul>
         </div>
 
         <div class="previa-card">
           <span class="previa-tag">▶ FORRÓ</span>
-          <img src="https://via.placeholder.com/200x200/1c1c1c/f5b800?text=Luiz+Gonzaga" alt="Forró">
-          <h4>A Vida do Viajante</h4>
-          <div class="estilo">Luiz Gonzaga</div>
-          <audio controls preload="none">
-            <source src="previa-forro.mp3" type="audio/mpeg">
-          </audio>
+          <h4 style="font-size: 18px; margin-bottom: 10px; color: var(--amarelo);">Principais Cantores:</h4>
+          <ul style="list-style: none; padding: 0; margin: 0; text-align: center; color: var(--texto); font-size: 15px; line-height: 1.6;">
+            <li>Guilherme Silva</li>
+            <li>Washington Brasileiro</li>
+            <li>Zezo Potiguar</li>
+            <li>Silvanno Salles</li>
+            <li>Robério e Seus Teclados</li>
+            <li>Frank Aguiar</li>
+            <li>Banda Djavú</li>
+            <li>Tierry</li>
+            <li>Rasta Chinela</li>
+            <li>Wesley Safadão</li>
+          </ul>
         </div>
 
-        <div class="previa-card">
-          <span class="previa-tag">▶ HINO DO CAMINHONEIRO</span>
-          <img src="https://via.placeholder.com/200x200/1c1c1c/f5b800?text=Chitaozinho" alt="Hino">
-          <h4>Caminhoneiro</h4>
-          <div class="estilo">Chitãozinho & Xororó</div>
-          <audio controls preload="none">
-            <source src="previa-hino.mp3" type="audio/mpeg">
-          </audio>
-        </div>
+
       </div>
 
       <div class="carrossel-dots" id="carrossel-dots"></div>
@@ -462,17 +540,7 @@
         </div>
       </div>
 
-      <div class="dep-card">
-        <div class="dep-stars">★★★★★</div>
-        <p>"A pasta dos hinos do caminhoneiro me emociona. Roberto Carlos, Chitãozinho... música que fala da gente mesmo. Tudo organizado, é só plugar."</p>
-        <div class="dep-pessoa">
-          <div class="dep-avatar">R</div>
-          <div>
-            <div class="dep-nome">Roberto da Silva</div>
-            <div class="dep-local">Cascavel - PR</div>
-          </div>
-        </div>
-      </div>
+
 
       <div class="dep-card">
         <div class="dep-stars">★★★★★</div>
@@ -548,18 +616,17 @@
           <li class="ok">Sem propaganda</li>
           <li class="ok">Acesso imediato</li>
           <li class="no">Piseiro, Forró, Rock e Pagode</li>
-          <li class="no">Pasta "Hinos do Caminhoneiro"</li>
           <li class="no">Suporte VIP no Zap</li>
           <li class="no">Videoclipes em HD</li>
           <li class="no">Grupo VIP de Membros</li>
         </ul>
         <div class="plano-preco">
           <div class="preco-de">De R$ 29,90</div>
-          <div class="preco-por"><small>R$</small> 10,90</div>
+          <div class="preco-por"><small>R$</small> 12,90</div>
           <div class="preco-tipo">Pagamento único</div>
         </div>
         <a href="#" onclick="abrirPopup(); return false;" class="btn-cta">ESCOLHER BÁSICO</a>
-        <div class="plano-warning">👉 Por só R$ 9 a mais leve +6.000 músicas em 7 estilos e os bônus</div>
+        <div class="plano-warning">👉 Por só R$ 12 a mais leve +6.000 músicas em 7 estilos e os bônus</div>
       </div>
 
       <div class="plano destaque">
@@ -571,7 +638,6 @@
           <li class="ok">7 estilos organizados em pastas</li>
           <li class="ok">Modão, Sertanejo, Piseiro, Forró</li>
           <li class="ok">Flashback, Rock e Pagode</li>
-          <li class="ok"><strong>Pasta exclusiva: Hinos do Caminhoneiro</strong></li>
           <li class="ok">Funciona offline (sem internet)</li>
           <li class="ok">Zero propaganda</li>
           <li class="ok">Acesso imediato</li>
@@ -583,7 +649,7 @@
         </ul>
         <div class="plano-preco">
           <div class="preco-de">De R$ 49,90</div>
-          <div class="preco-por"><small>R$</small> 19,90</div>
+          <div class="preco-por"><small>R$</small> 24,90</div>
           <div class="preco-tipo">Pagamento único</div>
         </div>
         <a href="https://tilimcheckout.com/checkout?p=SEU_LINK_COMPLETO" class="btn-cta">QUERO O PACOTE COMPLETO</a>
@@ -621,7 +687,7 @@
       </div>
       <div class="faq-item">
         <div class="faq-q">Como as músicas vêm organizadas?</div>
-        <div class="faq-a">Tudo separado em pastas por estilo: Modão & Raiz, Sertanejo Atual, Piseiro, Forró, Flashback 70/80/90, Rock Clássico, Pagode & Samba, e Hinos do Caminhoneiro. Você escolhe o clima da viagem.</div>
+        <div class="faq-a">Tudo separado em pastas por estilo: Modão & Raiz, Sertanejo Atual, Piseiro, Forró, Flashback 70/80/90, Rock Clássico e Pagode & Samba. Você escolhe o clima da viagem.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q">Como coloco no pendrive?</div>
@@ -647,7 +713,7 @@
 
     <div style="text-align:center;margin-top:40px">
       <p style="color:var(--texto-2);font-size:15px;margin-bottom:18px">Tirou suas dúvidas? Então bora pra estrada 🚛</p>
-      <a href="#oferta" class="btn-cta">QUERO MEU PENDRIVE AGORA</a>
+      <a href="#oferta" class="btn-cta">QUERO AGORA MINHAS 6.000 MÚSICAS</a>
     </div>
   </div>
 </section>
@@ -665,10 +731,15 @@
   <div class="popup">
     <button class="popup-close" onclick="fecharPopup()">×</button>
     <div class="popup-alert">⚠️ ESPERA AÍ, MOTORISTA!</div>
-    <h2>Leve o Pacote Completo por apenas <span>R$ 14,90</span></h2>
-    <p>Adicione no carrinho: <strong>+6.000 músicas em 7 estilos</strong>, pasta exclusiva "Hinos do Caminhoneiro", bônus e Grupo VIP. Tudo organizado, pronto pra rodar.</p>
-    <a href="https://tilimcheckout.com/checkout?p=SEU_LINK_DOWNSELL_1490" class="btn-cta">SIM! QUERO POR R$ 14,90</a>
-    <a href="https://tilimcheckout.com/checkout?p=SEU_LINK_BASICO" class="popup-recusar">Não, prefiro continuar com a opção de R$ 10,90</a>
+    <h2>Leve o Pacote Completo por apenas <span>R$ 19,90</span></h2>
+    <p style="margin-bottom: 10px; font-weight: bold; color: #fff;">Adicione no carrinho:</p>
+    <ul style="text-align: left; margin: 0 auto 25px auto; max-width: 320px; list-style: none; padding: 0; color: #ccc; font-size: 15px; line-height: 1.5;">
+      <li style="margin-bottom: 8px;">✅ <strong>+6.000 músicas em 7 estilos</strong></li>
+      <li style="margin-bottom: 8px;">✅ Todos os Bônus + Grupo VIP</li>
+      <li>✅ Tudo organizado, pronto pra rodar</li>
+    </ul>
+    <a href="https://tilimcheckout.com/checkout?p=SEU_LINK_DOWNSELL_1490" class="btn-cta">SIM! QUERO POR R$ 19,90</a>
+    <a href="https://tilimcheckout.com/checkout?p=SEU_LINK_BASICO" class="popup-recusar">Não, prefiro continuar com a opção de R$ 12,90</a>
   </div>
 </div>
 
