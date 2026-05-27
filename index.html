@@ -13,6 +13,12 @@
   document.head.appendChild(a);
 </script>
 
+<!-- Utmify Pixel -->
+<script>
+  window.pixelId = "6a177231823e248be4466548";
+</script>
+<script async defer src="https://cdn.utmify.com.br/scripts/pixel/pixel.js"></script>
+
 <!-- Utmify UTMs -->
 <script
   src="https://cdn.utmify.com.br/scripts/utms/latest.js"
@@ -22,38 +28,20 @@
   defer
 ></script>
 
-<!-- Utmify: PageView + ViewContent -->
+<!-- Eventos: ViewContent ao rolar -->
 <script>
-  // PageView: dispara assim que a página carrega
-  window.addEventListener("load", function () {
-    if (window.utmify && typeof window.utmify.track === "function") {
-      window.utmify.track("PageView");
-    } else {
-      // aguarda o pixel estar pronto caso ainda não tenha carregado
-      var interval = setInterval(function () {
-        if (window.utmify && typeof window.utmify.track === "function") {
-          window.utmify.track("PageView");
-          clearInterval(interval);
-        }
-      }, 200);
-    }
-  });
-
-  // ViewContent: dispara quando o usuário começa a rolar a página
   (function () {
-    var viewContentFired = false;
+    var fired = false;
     function fireViewContent() {
-      if (viewContentFired) return;
-      viewContentFired = true;
+      if (fired) return;
+      fired = true;
       window.removeEventListener("scroll", fireViewContent);
-      var tryFire = function () {
-        if (window.utmify && typeof window.utmify.track === "function") {
-          window.utmify.track("ViewContent");
-        } else {
-          setTimeout(tryFire, 300);
+      var tryFire = setInterval(function () {
+        if (typeof window.utmify === "function") {
+          window.utmify("track", "ViewContent");
+          clearInterval(tryFire);
         }
-      };
-      tryFire();
+      }, 150);
     }
     window.addEventListener("scroll", fireViewContent, { passive: true });
   })();
