@@ -45,6 +45,19 @@
     }
     window.addEventListener("scroll", fireViewContent, { passive: true });
   })();
+
+  // InitiateCheckout: dispara no hover (desktop) ou touchstart (mobile) no botão de compra
+  var _initiateCheckoutFired = false;
+  function utmifyInitiateCheckout() {
+    if (_initiateCheckoutFired) return;
+    _initiateCheckoutFired = true;
+    var tryFire = setInterval(function () {
+      if (typeof window.utmify === "function") {
+        window.utmify("track", "InitiateCheckout");
+        clearInterval(tryFire);
+      }
+    }, 150);
+  }
 </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="+6.000 músicas pra estrada em 7 estilos. Pendrive do Caminhoneiro - modão, sertanejo, piseiro, flashback, rock e mais. Sem internet, sem propaganda, sem mensalidade.">
@@ -632,7 +645,7 @@
           <li class="ok">Suporte VIP no WhatsApp</li>
           <li class="ok">🎁 Bônus 1: Acesso vitalício</li>
           <li class="ok">🎁 Bônus 2: Videoclipes em HD</li>
-          <li class="ok">🎁 Bônus 3: Atualizações mensais grátis</li>
+
           <li class="ok">🎁 Bônus 4: Grupo VIP no WhatsApp</li>
         </ul>
         <div class="plano-preco">
@@ -640,7 +653,13 @@
           <div class="preco-por"><small>R$</small> 24,90</div>
           <div class="preco-tipo">Pagamento único</div>
         </div>
-        <a href="https://tilimcheckout.com/checkout?p=SEU_LINK_COMPLETO" class="btn-cta">QUERO O PACOTE COMPLETO</a>
+        <a
+          href="https://tilimcheckout.com/checkout?p=0c37e59f6192e6540faa4bb18ce5f4a3"
+          class="btn-cta"
+          id="btn-checkout-completo"
+          onmouseenter="utmifyInitiateCheckout()"
+          ontouchstart="utmifyInitiateCheckout()"
+        >QUERO O PACOTE COMPLETO</a>
       </div>
 
     </div>
@@ -726,8 +745,8 @@
       <li style="margin-bottom: 8px;">✅ Todos os Bônus + Grupo VIP</li>
       <li>✅ Tudo organizado, pronto pra rodar</li>
     </ul>
-    <a href="https://tilimcheckout.com/checkout?p=SEU_LINK_DOWNSELL_1490" class="btn-cta">SIM! QUERO POR R$ 19,90</a>
-    <a href="https://tilimcheckout.com/checkout?p=SEU_LINK_BASICO" class="popup-recusar">Não, prefiro continuar com a opção de R$ 12,90</a>
+    <a href="https://tilimcheckout.com/checkout?p=450cba154f868a7d4f4d35941e5484d4" class="btn-cta">SIM! QUERO POR R$ 19,90</a>
+    <a href="https://tilimcheckout.com/checkout?p=01ede1227aecd729984c9829bc958ef6" class="popup-recusar">Não, prefiro continuar com a opção de R$ 12,90</a>
   </div>
 </div>
 
